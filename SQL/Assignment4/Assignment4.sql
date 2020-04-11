@@ -58,11 +58,11 @@ FROM Answer a
 JOIN Question q ON a.QuestionID = q.QuestionID
 GROUP BY a.QuestionID
 HAVING COUNT(a.AnswerID) = (SELECT MAX(`number`)
-                          FROM(SELECT (COUNT(*)) `number`
+                          FROM(SELECT COUNT(a.AnswerID) `number`
 							   FROM Answer
 							   GROUP BY a.QuestionID) g);
 
-SELECT *, COUNT(a.AnswerID)
+SELECT a.QuestionID, q.Content, COUNT(1)  
 FROM Answer a
 JOIN Question q ON a.QuestionID = q.QuestionID
 GROUP BY a.QuestionID
@@ -71,6 +71,7 @@ HAVING COUNT(a.AnswerID) = (SELECT Count(a.AnswerID)
                             GROUP BY a.QuestionID
                             ORDER BY COUNT(a.AnswerID) DESC
                             LIMIT 1);
+
 
 -- Q9. Thống kê số lượng account trong mỗi group
 SELECT GroupID, COUNT(AccountID)
