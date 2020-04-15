@@ -26,19 +26,19 @@ GROUP BY d.DepartmentID
 HAVING Count(AccountID)>3;
 
 -- Q5. Lay danh sach cau hoi duoc dung trong de thi nhieu nhat
--- NG. Bang ket qua trang?
-SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-
 -- Set data -> Inset Data
 TRUNCATE TABLE exam;
 
-SELECT QuestionID,COUNT(e.ExamID)
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+SELECT *
 FROM ExamQuestion eq
 JOIN Exam e ON eq.ExamID = e.ExamID
-GROUP BY QuestionID
-HAVING Count(e.ExamID) = (SELECT MAX(COUNT(e.ExamID))
-				          FROM Exam);
-                          
+GROUP BY eq.QuestionID
+HAVING Count(eq.ExamID) = (SELECT MAX(x)
+						  FROM (SELECT Count(eq1.ExamID) x
+                                FROM ExamQuestion eq1
+                                GROUP BY eq1.QuestionID) y);
+                                
 -- Q6. Thông kê mỗi category Question được sử dụng trong bao nhiêu Question
 SELECT cq.CategoryID, COUNT(QuestionID)
 FROM CategoryQuestion cq
@@ -51,16 +51,15 @@ FROM ExamQuestion
 GROUP BY QuestionID;
 
 -- Q8. Lấy ra Question có nhiều câu trả lời nhất
--- NG. Ket qua tra ve sai
 
 SELECT a.QuestionID, q.Content, COUNT(1) 
 FROM Answer a
 JOIN Question q ON a.QuestionID = q.QuestionID
 GROUP BY a.QuestionID
-HAVING COUNT(a.AnswerID) = (SELECT MAX(`number`)
-                          FROM(SELECT COUNT(a.AnswerID) `number`
-							   FROM Answer
-							   GROUP BY a.QuestionID) g);
+HAVING COUNT(a.AnswerID) =	(SELECT MAX(`number`)
+							 FROM(SELECT COUNT(a1.AnswerID) `number`
+							 FROM Answer a1
+							GROUP BY a1.QuestionID) g);
 
 SELECT a.QuestionID, q.Content, COUNT(1)  
 FROM Answer a
@@ -79,17 +78,17 @@ FROM GroupAccount
 GROUP BY GroupID;
 
 -- Q10. Tìm chức vụ có ít người nhất 
--- NG. Ket qua ko dung
-SELECT *,Count(1)
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+SELECT p.PositionName, Count(1)
 FROM `Position` p
 JOIN `Account` a ON p.PositionID = a.PositionID
 GROUP BY p.PositionID
-HAVING Count(a.AccountID) = (SELECT COUNT(a.AccountID)
-							 FROM `Account`
-                             GROUP BY a.AccountID
-                             ORDER BY COUNT(a.AccountID) DESC
+HAVING Count(a.AccountID) = (SELECT COUNT(a1.AccountID) b
+							 FROM `Account` a1
+                             GROUP BY a1.AccountID
+                             ORDER BY COUNT(a1.AccountID) DESC
                              LIMIT 1);
-                             
+                           
 					
 -- Q11. thống kê mỗi phòng ban có bao nhiêu dev, test, scrum master, PM
 SELECT DepartmentName, PositionName, COUNT(PositionName)
@@ -99,7 +98,6 @@ JOIN `Position` p ON a.PositionID = p.PositionID
 GROUP BY PositionName;
 
 -- Q12. Lấy thông tin chi tiết của câu hỏi bao gồm: thông tin cơ bản của question, loại câu hỏi, ai là người tạo ra câu hỏi, câu trả lời là gì, ...
--- Note: Tai sao ko dung cau lenh FULL OUTER JOIN duoc?
 SELECT q.Content, cq.CategoryName, tq.TypeName, a.Content
 FROM Question q
 JOIN CategoryQuestion cq ON q.CategoryID = cq.CategoryID
@@ -114,20 +112,16 @@ JOIN Typequestion tq ON q.TypeID = tq.TypeID
 GROUP BY TypeName;
 
 -- Q14. lấy ra group không có account nào
--- NOTE: Thay * thanh GroupName thi loi?
-SELECT *
+SELECT DISTINCT g.groupName
 FROM `Group` g
 LEFT JOIN GroupAccount ga ON g.GroupID = ga.GroupID
-GROUP BY GroupName
-HAVING AccountID IS NULL;
+WHERE ga.AccountID IS NULL;
 
 -- Q16. Lấy ra question không có answer nào
--- Note: Tai sao khong Select q.QuestionID, q.Content duoc.
-SELECT *
+SELECT DISTINCT q.QuestionID, q.Content
 FROM Question q
 LEFT JOIN Answer a ON q.QuestionID = a.QuestionID
-GROUP BY q.QuestionID
-HAVING a.AnswerID IS NULL;
+WHERE a.AnswerID IS NULL;
 
 -- Q17. 
 SELECT*
