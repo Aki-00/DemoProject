@@ -23,18 +23,15 @@ SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
                                     SELECT COUNT(ga1.GroupID) x 
 									FROM GroupAccount ga1
                                     GROUP BY ga1.AccountID) g1);
-								
-WITH accountnumber AS(
-SELECT COUNT(GroupID)
-FROM GroupAccount
-GROUP BY AccountID),
 
-SELECT *
- FROM `Account` a
- JOIN GroupAccount ga ON a.AccountID = ga.AccountID
- GROUP BY a.AccountID
- HAVING COUNT(ga.GroupID) = Max(Accountnumber);
+ USE TestingSystem;
  
+ 
+
+Error Code: 1054. Unknown column 'Accountnumber' in 'having clause'
+ 
+ 
+
 -- Q3. Tạo view có chứa câu hỏi có những content quá dài (content quá 300 từ được coi là quá dài) và xóa nó đi
 DROP VIEW IF EXISTS Longcontent;
 CREATE VIEW Longcontent AS

@@ -30,11 +30,7 @@ AND p.ListPrice = ( SELECT MIN(ListPrice)
 -- Ex2.Q1. Viết query lấy danh sách tên country và province được lưu trong AdventureWorks2008sample database.
 SELECT cr.`Name` AS country, s.`Name` AS Province
 FROM stateprovince s
-LEFT JOIN countryregion cr ON s.CountryRegionCode = cr.CountryRegionCode
-UNION
-SELECT cr.`Name`, s.`Name`
-FROM stateprovince s
-RIGHT JOIN countryregion cr ON s.CountryRegionCode = cr.CountryRegionCode;
+JOIN countryregion cr ON s.CountryRegionCode = cr.CountryRegionCode;
 
 -- Ex2.Q3.Tiếp tục với câu query trước và thêm điều kiện là chỉ lấy country Germany và Canada
 

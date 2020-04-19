@@ -18,6 +18,8 @@ CREATE TABLE `Position`
 PRIMARY KEY (PositionID)
 );
 
+DROP TABLE IF EXISTS `Account`;
+
 CREATE TABLE `Account` 
 (
     AccountID INT UNSIGNED AUTO_INCREMENT,
@@ -27,11 +29,11 @@ CREATE TABLE `Account`
     DepartmentID TINYINT UNSIGNED,
     PositionID TINYINT UNSIGNED,
     CreateDate DATE,
+    Sex ENUM('M','F','U'),
 PRIMARY KEY (AccountID),
 FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
 FOREIGN KEY (PositionID) REFERENCES `Position`(PositionID)
 );
-
 CREATE TABLE `Group`
 (
 	GroupID TINYINT UNSIGNED AUTO_INCREMENT,

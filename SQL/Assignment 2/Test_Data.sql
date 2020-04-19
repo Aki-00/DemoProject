@@ -47,16 +47,16 @@ VALUES              ('an2gmail.com.com',    'an011',  	'Nguyen Van An',		1,  		2
 -- Insert data table Group
 
 INSERT INTO `Group` (GroupName,		CreateDate,		CreatorID)
-VALUES              ('GroupA',		'2020-08-03',	'admin01'),
-                    ('GroupB',		'2020-01-08',	'admin01'),
-					('GroupC',		'1996-03-04',	'admin01'),
-					('GroupD',		'2019-07-04',	'admin01'),
-					('GroupE',		'2015-08-04',	'admin01'),
-					('GroupF',		'2014-08-04',	'admin01'),
-					('GroupM',		'2020-03-31',	'admin01'),
-					('GroupN',		'2020-04-06',	'admin01'),
-					('GroupL',		'2020-01-04',	'admin01'),
-					('GroupK',		'2020-02-25',	'admin01');
+VALUES              ('GroupA',		'2020-08-03',	'1'),
+                    ('GroupB',		'2020-01-08',	'2'),
+					('GroupC',		'1996-03-04',	'1'),
+					('GroupD',		'2019-07-04',	'4'),
+					('GroupE',		'2015-08-04',	'5'),
+					('GroupF',		'2014-08-04',	'4'),
+					('GroupM',		'2020-03-31',	'8'),
+					('GroupN',		'2020-04-06',	'6'),
+					('GroupL',		'2020-01-04',	'9'),
+					('GroupK',		'2020-02-25',	'2');
 
 -- Insert data table GroupAccount
 
@@ -95,16 +95,16 @@ VALUES                       ('Common_Part1'),
 -- Insert data table Question
 
 INSERT INTO Question (Content, 					CategoryID, TypeID, CreatorID, CreateDate)
-VALUES				('Business Manner in Japan',	1,		1,		'admin',	'2018-08-05'),
-					('Email Writting Skill', 		1,		1,		'admin',	'2018-08-05'),
-                    ('Reading Skill',				9,		2,		'admin',	'2019-04-05'),
-                    ('Color Picking',				4,		2,		'admin',	'2020-01-31'),
-                    ('Basic Photoshop',				5,		2,		'admin',	'2018-04-02'),
-                    ('Stastics in Research',		10,		2,		'admin',	'2018-04-02'),
-                    ('IELT Test',					8,		1,		'admin',	'2018-04-02'),
-                    ('Manufacturing Chain',			3,		1,		'admin',	'2018-04-02'),
-                    ('Basic Account',				7,		2,		'admin',	'2018-07-31'),
-                    ('Makers List',					2,		2,		'admin',	'2020-04-02');
+VALUES				('Business Manner in Japan',	1,		1,		'1',	'2018-08-05'),
+					('Email Writting Skill', 		1,		1,		'3',	'2018-08-05'),
+                    ('Reading Skill',				9,		2,		'5',	'2019-04-05'),
+                    ('Color Picking',				4,		2,		'5',	'2020-01-31'),
+                    ('Basic Photoshop',				5,		2,		'9',	'2018-04-02'),
+                    ('Stastics in Research',		10,		2,		'2',	'2018-04-02'),
+                    ('IELT Test',					8,		1,		'4',	'2018-04-02'),
+                    ('Manufacturing Chain',			3,		1,		'4',	'2018-04-02'),
+                    ('Basic Account',				7,		2,		'4',	'2018-07-31'),
+                    ('Makers List',					2,		2,		'7',	'2020-04-02');
                     
 -- Inser data table Answer
 
@@ -123,16 +123,16 @@ VALUES             ('AAAAAA',	1,		'No'),
 -- Insert data table Exam
 
 INSERT INTO Exam (`Code`, 			Title, 					CategoryID, 	 	Duration, 		CreatorID, 	CreateDate)
-VALUES 				('C001'		, 'Business Manner Test 01'		,	1			,	60		,   'admin'			,'2019-04-05'),
-					('E001'		, 'IELT Listning Test'			,	8			,	60		,   'admin'			,'2019-04-05'),
-                    ('S001'		, 'Basic Stacstic Test'			,	10			,	120		,   'admin'			,'2019-04-07'),
-                    ('C002'		, 'Maker List'					,	2			,	60		,   'admin'			,'2020-04-08'),
-                    ('M001'		, 'Color Picking Test'			,	4			,	120		,   'admin'			,'2020-04-10'),
-                    ('E002'		, 'Reading Test 01'				,	9			,	60		,   'admin'			,'2020-04-05'),
-                    ('E003'		, 'Reading Test 02'				,	9			,	60		,   'admin'			,'2020-04-05'),
-                    ('C003'		, 'Business Manner Test 02'		,	1			,	60		,   'admin'			,'2020-04-07'),
-                    ('A001'		, 'Basic Account Test'			,	7			,	90		,   'admin'			,'2020-04-07'),
-                    ('M002'		, 'Basic Photoshop Test'		,	5			,	90		,   'admin'         , '2020-04-08');
+VALUES 				('C001'		, 'Business Manner Test 01'		,	1			,	60		,   '1'			,'2019-04-05'),
+					('E001'		, 'IELT Listning Test'			,	8			,	60		,   '2'			,'2019-04-05'),
+                    ('S001'		, 'Basic Stacstic Test'			,	10			,	120		,   '5'			,'2019-04-07'),
+                    ('C002'		, 'Maker List'					,	2			,	60		,   '5'			,'2020-04-08'),
+                    ('M001'		, 'Color Picking Test'			,	4			,	120		,   '9'			,'2020-04-10'),
+                    ('E002'		, 'Reading Test 01'				,	9			,	60		,   '4'			,'2020-04-05'),
+                    ('E003'		, 'Reading Test 02'				,	9			,	60		,   '3'			,'2020-04-05'),
+                    ('C003'		, 'Business Manner Test 02'		,	1			,	60		,   '6'			,'2020-04-07'),
+                    ('A001'		, 'Basic Account Test'			,	7			,	90		,   '9'			,'2020-04-07'),
+                    ('M002'		, 'Basic Photoshop Test'		,	5			,	90		,   '1'         , '2020-04-08');
                     
 -- Insert data table ExamQuestion
 
