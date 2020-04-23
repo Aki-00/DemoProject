@@ -143,11 +143,11 @@ DELIMITER $$
             FROM Answer
             WHERE QuestionID = New.QuestionID AND isCorrect = 'Yes';
             
-		IF Number_of_Answer >5 OR Number_of_Correct_Answer>3 THEN 
+		IF Number_of_Answer >=4 OR Number_of_Correct_Answer>=2 THEN 
         SIGNAL SQLSTATE '12345'
 		SET MESSAGE_TEXT = 'Cannot insert data';
 		END IF;
-       
+        
 	END $$
     DELIMITER ;
     
@@ -161,10 +161,57 @@ DELIMITER $$
     BEFORE INSERT ON `Account`
     FOR EACH ROW
     BEGIN
-		
-       
+		IF NEW.Sex = 'Nam' THEN SET NEW.Sex = 'M';
+        ELSEIF NEW.Sex = 'Nu' THEN SET NEW.Sex = 'F';
+        ELSE SET NEW.Sex = 'U';
+        END IF;
+	END $$
+    DELIMITER ;
+  
+  INSERT INTO `Account`(Email, Username, Fullname, DepartmentID, PositionID, CreateDate, Sex)
+  VALUES               ('mai@gmail.com', 'mai12', 'Nguyen Mai', NULL, 9, CURDATE(), 'Nu');
+
+    -- Q9. Viết trigger không cho phép người dùng xóa bài thi mới tạo được 2 ngày
+DROP TRIGGER IF EXISTS trigger_delete_exam;
+DELIMITER $$
+	CREATE TRIGGER trigger_delete_exam
+    BEFORE DELETE ON Exam
+    FOR EACH ROW
+    BEGIN
+		IF OLD.CreateDate > DATE_SUB(NOW(), INTERVAL 2 day) THEN 
+        SIGNAL SQLSTATE '12345'
+		SET MESSAGE_TEXT = 'Cannot delete data';
+		END IF;
+        
 	END $$
     DELIMITER ;
     
-    INSERT INTO Answer(Content, QuestionID, isCorrect)
-    VALUES            ('XXXXXX', 8, 'Yes');
+    DELETE
+    FROM Exam
+    WHERE CreateDate = '2020-04-19';
+
+-- Q10.Viết trigger chỉ cho phép người dùng chỉ được update, delete các question khi question đó chưa nằm trong exam nào
+
+DROP TRIGGER IF EXISTS trigger_delete_question;
+DELIMITER $$
+	CREATE TRIGGER trigger_delete_question
+    BEFORE UPDATE ON question
+    FOR EACH ROW
+    BEGIN
+		DECLARE question_on_exam TINYINT UNSIGNED;
+			SELECT Count(1) INTO question_on_exam
+            FROM ExamQuestion
+            WHERE QuestionID = OLD.QuestionID;
+            
+		IF question_on_exam <> 0 THEN 
+        SIGNAL SQLSTATE '12345'
+		SET MESSAGE_TEXT = 'Cannot update question';
+		END IF;
+        
+	END $$
+    DELIMITER ;
+
+DELETE
+FROM question
+WHERE QuestionID = 1;
+

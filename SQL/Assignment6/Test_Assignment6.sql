@@ -143,10 +143,6 @@ CALL delete_exam (4);
 
 -- Q10. Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa), sau đó in số lượng record đã remove từ các table liên quan trong khi removing
 
-SET @examID = (SELECT ExamID
-			   FROM Exam
-               WHERE CreateDate = DATEDIFF(yyyy,3,CURDATE()))
-CALL delete_exam(@examID);
 
 
 
