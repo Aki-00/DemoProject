@@ -82,19 +82,23 @@ SELECT s.sName
 DROP TRIGGER IF EXISTS trigger_update_sID;
 DELIMITER $$
 	CREATE TRIGGER trigger_update_sID
-    AFTER UPDATE ON `Subject`
+    BEFORE UPDATE ON `Subject`
     FOR EACH ROW
     BEGIN
 		UPDATE StudentSubject ss
-        SET ss.sID = NEW.sID;
+        SET ss.sID = NEW.sID
+        WHERE ss.ID = NEW.sID;
 	END $$
     DELIMITER ;
+
+UPDATE `Subject`
+SELECT 
 
 -- d.b.Trigger casDel: Khi xóa 1 student, các dữ liệu của table StudentSubject cũng sẽ bị xóa theo
 DROP TRIGGER IF EXISTS trigger_delete_student;
 DELIMITER $$
 	CREATE TRIGGER trigger_delete_student
-    AFTER DELETE ON `Student`
+    BEFORE DELETE ON `Student`
     FOR EACH ROW
     BEGIN
         DELETE

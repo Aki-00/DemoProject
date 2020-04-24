@@ -1,0 +1,6 @@
+package TestingSystem;
+
+public class CategoryQuestion {
+	byte categoryId;
+	String categoryName;
+}
