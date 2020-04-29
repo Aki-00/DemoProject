@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class Ex5_InputFromConsole {
+	public static void main(String[] args) {
+
+		/*Scanner scanner = new Scanner(System.in) ;
+
+		//Q1.
+		System.out.println("Moi ban nhap vao 3 so nguyen duong ");
+		for (int i=1; i<=3; i++) {
+			int x= scanner.nextInt();
+			System.out.println("Ban da nhap: " + x + "\n");}
+
+		//Q2.
+		System.out.println("Moi ban nhap vao 2 so thuc");
+		for (int i1=1;i1<=2;i1++) {
+			double d1 = scanner.nextDouble();
+			System.out.println("Ban da nhap: " + d1 + "\n");}
+
+		//Q3.
+
+		System.out.println("Moi ban nhap vao ho");
+		String s1 = scanner.next();
+		System.out.println("Moi ban nhap vao ten");
+		String s2 = scanner.next();
+		System.out.println("Ten ban da nhap: "+s1 + " " +s2 +"\n");		*/
+
+
+
+	//Q5. 
+
+	//public static void runInputAccount(String[] args) {
+		inputAccount();}
+
+
+	
+
+
+	public static void inputAccount() {
+		Scanner scanner = new Scanner(System.in) ;
+		for (;;) {
+			System.out.print("Nhap vao Account ID:");
+			int iD = scanner.nextInt();
+			scanner.nextLine(); 
+			System.out.print("Nhap vao username:");
+			String userName = scanner.nextLine();
+			System.out.print("Nhap vao Department:");
+			String department = scanner.nextLine();
+			System.out.print("Nhap vao Position ID (tu 1 -> 5):");
+			int position = scanner.nextInt(6);
+			switch(position) {
+			case 1:
+				System.out.print("Dev");
+				break;
+			case 2:
+				System.out.print("Test");
+				break;
+			case 3:
+				System.out.print("ScrumMaster");
+				break;
+			case 4:
+				System.out.print("PM");
+				break;
+			default:
+				System.out.print("SA");	
+			}
+			System.out.print("\nNhap vao group:");
+			scanner.nextLine();
+			String groups = scanner.nextLine();
+			System.out.print("\nNhap vao ngay:");
+			String date = scanner.nextLine();
+
+
+		}
+
+	}
+}
+
+

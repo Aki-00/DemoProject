@@ -1,0 +1,37 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class test2 {
+
+	public static void main(String[] args) {
+			
+		
+	Scanner scanner = new Scanner(System.in) ;
+	for (;;) {
+	System.out.println("Moi ban nhap thong tin account");
+	System.out.println("Moi ban nhap ID");
+	int id = scanner.nextInt();
+	System.out.println("Moi ban nhap email");
+	String email = scanner.next();
+	System.out.println("Moi ban nhap username");
+	String userName = scanner.next();
+	System.out.println("Moi ban nhap fullname");
+	String fullName = scanner.next();
+	System.out.println("Moi ban nhap department");
+	String department = scanner.next();
+	System.out.println("Moi ban nhap Position (Chon 1,2,3,4,5");
+	int position = scanner.nextInt(5);
+	System.out.println("Moi ban nhap Group");
+	String group = scanner.next();
+	System.out.println("Moi ban nhap JoinDate");
+	String joinDate = scanner.next();
+	scanner.close();
+	}
+	
+	
+
+}
+}

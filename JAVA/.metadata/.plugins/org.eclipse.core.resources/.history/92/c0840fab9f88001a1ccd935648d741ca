@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Ex5_InputFromConsole {
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in) ;
+		
+		//Q1.
+		 System.out.println("Moi ban nhap vao 3 so nguyen duong ");
+		 for (int i=1; i<=3; i++) {
+			 int x= scanner.nextInt();
+			 System.out.println("Ban da nhap: " + x + "\n");}
+			 
+		//Q2.
+			 System.out.println("Moi ban nhap vao 2 so thuc");
+			 for (int i1=1;i1<=2;i1++) {
+				double d1 = scanner.nextDouble();
+				System.out.println("Ban da nhap: " + d1 + "\n");}
+				
+		//Q3.
+				
+				System.out.println("Moi ban nhap vao ho");
+				String s1 = scanner.next();
+				System.out.println("Moi ban nhap vao ten");
+				String s2 = scanner.next();
+				System.out.println("Ten ban da nhap: "+s1 + " " +s2 +"\n");
+				
+				
+	
+		//Q4.
+				
+				
+		 }
+		 
+		
+		
+	}
+}
