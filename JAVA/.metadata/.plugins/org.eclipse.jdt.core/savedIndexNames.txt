@@ -1,19 +1,5 @@
 INDEX VERSION 1.131+/Users/Aki/Desktop/VTI/DemoProject/JAVA/.metadata/.plugins/org.eclipse.jdt.core
-799990907.index
-1271342938.index
-3259220108.index
-1266134422.index
-1092244934.index
-3380246455.index
-4294682621.index
+3124604304.index
 3443170566.index
-3399892588.index
-844415787.index
-414509174.index
-2755972428.index
-136901155.index
-2575373830.index
-4066794956.index
-3715880652.index
-820909358.index
-2651774955.index
+909147644.index
+257845082.index
