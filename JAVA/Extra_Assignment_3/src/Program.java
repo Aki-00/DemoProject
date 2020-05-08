@@ -8,7 +8,7 @@ public class Program {
 		String n = soCuoc();
 		int tienCuoc = tienCuoc();
 		
-		
+
 		System.out.println("So da chon: "+n);
 		System.out.println("So tien da cuoc: " +tienCuoc);
 		
