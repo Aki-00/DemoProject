@@ -8,7 +8,7 @@ public class Student {
 	private float grade;
 	private String level;
 	
-	Student(String name, String hometown){
+	public Student(String name, String hometown){
 		this.name = name;
 		this.hometown = hometown;
 		grade =0;

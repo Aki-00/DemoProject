@@ -2,10 +2,10 @@ package com.vti.backend;
 
 import java.util.Date;
 
-import com.vti.entity.Account;
-import com.vti.entity.Department;
-import com.vti.entity.Group;
-import com.vti.entity.Position;
+import com.vti.entity.Constructor.Account;
+import com.vti.entity.Constructor.Department;
+import com.vti.entity.Constructor.Group;
+import com.vti.entity.Constructor.Position;
 
 
 
@@ -47,10 +47,7 @@ public Account[] Ex2() {
 public void Ex3(Account[] allAccounts) {
 	Group group1 = new Group();
 	
-	for(int i =0; i<allAccounts.length;i++) {
-		Account accountAlls : allAccounts};
 	
-	}
 	Account[] accountOfGroup2s = {account1, account2, account3};
 	
 	Group group2 = new Group("Group Java",account2,accountOfGroup2s,new Date());

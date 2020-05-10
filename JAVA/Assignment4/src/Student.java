@@ -26,7 +26,15 @@ public class Student {
 		
 	
 	//Tao ham setter
-	public void setAge(byte age) {
-		this.age=age;
+	public void setAge(byte i) {
+		this.age=i;
+	}
+	
+	public void setId(int id) {
+		this.id=id;
+	}
+	
+	public void setClazz(String clazz) {
+		this.clazz=clazz;
 	}
 }
