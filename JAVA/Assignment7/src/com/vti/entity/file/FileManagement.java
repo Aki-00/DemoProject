@@ -1,7 +1,12 @@
 package com.vti.entity.file;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
@@ -126,7 +131,7 @@ public class FileManagement {
 		
 		File old = new File (pathOldFile);
 		File newFile = new File (newName);
-		if (isFileExists(pathOldFile)==false) {
+		if (!isFileExists(pathOldFile)) {
 			throw new Exception ("Error! File Not Exist.");
 		}else if (isFileExists(newName)) {
 			throw new Exception ("Error! Name is Exist.");
@@ -136,6 +141,52 @@ public class FileManagement {
 	}
 
 //Create New Folder
-	
-	
+	public static void createNewFolder(String newPathFolder) throws Exception {
+		File folder = new File (newPathFolder);
+		if (folder.exists()) {
+			throw new Exception ("Error! Folder Exist.");
+		}else {
+			folder.mkdir();
+		}
+	}
+//Download file
+	public static void downloadFile(String fileLink, String pathFolder) throws Exception {
+		File folder1 = new File (pathFolder);
+		if (!folder1.exists() || !folder1.isDirectory()) {
+			System.out.println("Error!Folder is not exist or not folder.");
+		}
+		String s[] = fileLink.split("/");
+		String name = s[s.length-1];
+		pathFolder = pathFolder+"/"+name;
+		//connect to URL
+		URL url = new URL(fileLink);
+		URLConnection connection = url.openConnection();
+		//get size of file
+		int size = connection.getContentLength();
+		//read file from internet
+		InputStream in = connection.getInputStream();
+		//save file
+		FileOutputStream output = new FileOutputStream(pathFolder);
+		int byteDownload = 0;
+		byte[] b = new byte[1024];
+		//get length
+		int length = in.read(b);
+		while (length!=-1) {
+			byteDownload += length;
+			System.out.println(byteDownload * 100f/size + "%");
+			//write content downloaded from 0 -> length to ouput
+			output.write(b,0,length);
+			length = in.read(b);
+		}
+		
+		//close
+		output.close();
+		in.close();
+		System.out.println("Download success");
+		
+		
+		
+
+		
+	}
 }
