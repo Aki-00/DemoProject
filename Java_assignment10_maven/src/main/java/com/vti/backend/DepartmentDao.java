@@ -20,26 +20,28 @@ import com.vti.testing.ScannerUtils;
 public class DepartmentDao {
 	private Connection connection;
 	private List<Department> departments;
-	public Properties Databaseproperties;
+	public Properties databaseproperties;
 	public Properties messagePoperties;
 	
-	public DepartmentDao() {
+	public DepartmentDao() throws FileNotFoundException, IOException {
 		departments = new ArrayList<Department>();
-		properties = new Properties();
-		properties.load(new FileInputStream("src/main/resource/database.properties"));
+		databaseproperties = new Properties();
+		databaseproperties.load(new FileInputStream("src/main/resource/database.properties"));
+		messagePoperties = new Properties();
+		messagePoperties.load(new FileInputStream("src/main/resource/message.properties"));
+		
 	}
 
 	//Method connect database
 	private Connection connect() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-		Properties properties = new Properties();
-		properties.load(new FileInputStream("src/main/resource/database.properties"));
+	
 
-		String url = properties.getProperty("url2");
-		String username = properties.getProperty("username");
-		String password = properties.getProperty("password");
+		String url = databaseproperties.getProperty("url2");
+		String username = databaseproperties.getProperty("username");
+		String password = databaseproperties.getProperty("password");
 
 		// Step 1* register the driver class with DriverManager
-		Class.forName(properties.getProperty("driver"));
+		Class.forName(databaseproperties.getProperty("driver"));
 
 		// Step 2: get a Database Connection
 		connection = DriverManager.getConnection(url, username, password);
@@ -50,7 +52,7 @@ public class DepartmentDao {
 	}
 
 //Method get Department
-	public List<Department> getDepartments() throws SQLException {
+	public List<Department> getDepartments() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		if(connection == null || connection.isClosed()) {
 			connect();
 		}
@@ -73,8 +75,7 @@ public class DepartmentDao {
 
 	// Method get department by id
 	public List<Department> getDepartmentByID() throws Exception {
-		// load properties
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
+		
 		// Create a statement object
 		String sql = "SELECT * FROM 	departments WHERE dept_no = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -94,7 +95,7 @@ public class DepartmentDao {
 		}
 
 		if (departments.isEmpty()) {
-			throw new Exception(properties.getProperty("no.deparmentId") + id);
+			throw new Exception(messagePoperties.getProperty("no.deparmentId") + id);
 		}
 		return departments;
 	}
@@ -132,11 +133,9 @@ public class DepartmentDao {
 	}
 
 	public void createDepartment(String id, String name) throws Exception {
-		// load properties
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
 		// check name exist
 		if (isDepartmentNameExists(name)) {
-			throw new Exception(properties.getProperty("yes.departmentName") + name);
+			throw new Exception(messagePoperties.getProperty("yes.departmentName") + name);
 		} else {
 			// if not exist
 			// Create a statement object
@@ -156,15 +155,14 @@ public class DepartmentDao {
 	}
 
 	public void updateDepartment(String id, String name) throws SQLException, Exception {
-		// load properties
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
+
 		// check department id exist
 		if (!isDepartmentIdExists(id)) {
-			throw new Exception(properties.getProperty("no.deparmentId") + id);
+			throw new Exception(messagePoperties.getProperty("no.deparmentId") + id);
 		}
 		// check department name exist
 		if (isDepartmentNameExists(name)) {
-			throw new Exception(properties.getProperty("yes.departmentName") + name);
+			throw new Exception(messagePoperties.getProperty("yes.departmentName") + name);
 		}
 		// if department name not exist update
 
@@ -182,11 +180,10 @@ public class DepartmentDao {
 	}
 
 	public void deleteDepartment(String id) throws SQLException, Exception {
-		// load properties
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
+
 		// check department id exist
 		if (!isDepartmentIdExists(id)) {
-			throw new Exception(properties.getProperty("no.deparmentId") + id);
+			throw new Exception(messagePoperties.getProperty("no.deparmentId") + id);
 		}
 		// Create a statement object
 		String sql = "	DELETE FROM departments WHERE dept_no = ?";
@@ -201,11 +198,10 @@ public class DepartmentDao {
 
 	// Call Procedure
 	public void deleteDepartmentUsingProcedure(String id) throws SQLException, Exception {
-		// load properties
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
+
 		// check department id exist
 		if (!isDepartmentIdExists(id)) {
-			throw new Exception(properties.getProperty("no.deparmentId") + id);
+			throw new Exception(messagePoperties.getProperty("no.deparmentId") + id);
 		}
 		// Create a statement object
 		String sql = "{CALL sp_delete_department(?)}";
@@ -219,11 +215,10 @@ public class DepartmentDao {
 
 	// Transaction
 	public void deleteDepartmentTransaction(String id) throws SQLException, Exception {
-		// load properties
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
+
 		// check department id exist
 		if (!isDepartmentIdExists(id)) {
-			throw new Exception(properties.getProperty("no.deparmentId") + id);
+			throw new Exception(messagePoperties.getProperty("no.deparmentId") + id);
 		}
 		// turn off auto commit
 		connection.setAutoCommit(false);
