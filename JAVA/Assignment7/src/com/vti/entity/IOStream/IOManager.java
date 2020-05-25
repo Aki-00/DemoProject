@@ -1,8 +1,11 @@
 package com.vti.entity.IOStream;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import com.vti.entity.file.FileManagement;
 
@@ -29,13 +32,14 @@ public class IOManager {
 			//continue read from position read b
 			length = fileInputStream.read(b);
 		}
-		
-		return content;
 		fileInputStream.close();
+		return content;
+		
 	}
 
+
 	// write content to File
-public static void writeFile(String pathFile, isContinuing, String content) {
+public static void writeFile(String pathFile, String content, boolean isContinuing) throws Exception {
 	if (!FileManagement.isFileExists(pathFile)) {
 		throw new Exception ("Error! File Not Exist.");
 	}
@@ -43,4 +47,39 @@ public static void writeFile(String pathFile, isContinuing, String content) {
 	fileOutputStream.write(content.getBytes());
 	fileOutputStream.close();
 }
+
+
+
+//write object
+public static void writeObject(Object object, String path) throws Exception {
+	File file = new File(path);
+	String folderPath = file.getAbsoluteFile().getParent();
+	File folder = new File(folderPath);
+	if (object==null) {
+		throw new Exception("Error! Object is Null.");
+	}if (!folder.exists()) {
+		folder.mkdirs();
+	}if  (file.exists()) {
+		file.delete();
+	}
+	file.createNewFile();
+	FileOutputStream fileOutputStream = new FileOutputStream(path);
+	ObjectOutputStream objectOutputStream = new ObjectOutputStream (fileOutputStream);
+	objectOutputStream.writeObject(object);
+	objectOutputStream.close();
 }
+
+//read object
+public static void readObject(String path) throws Exception {
+	FileInputStream fileInputStream = new FileInputStream (path);
+	ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+	
+	Object object = objectInputStream.readObject();
+	objectInputStream.close();
+}
+
+}
+	
+
+
+

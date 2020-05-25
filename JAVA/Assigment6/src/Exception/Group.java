@@ -17,14 +17,13 @@ public class Group extends ScannerUtils {
 		this.accounts = accounts;				
 	}
 	
-	
-	@Override
+
 	public int inputInt(String errorMessage) {
 		System.out.println("Moi ban nhap vao ID group");
 		return super.inputInt(errorMessage);
 	}
 	
-	@Override
+	
 	public String inputString() {
 		System.out.println("Moi ban nhap vao ten group");
 		return super.inputString();
