@@ -22,19 +22,18 @@ public class DepartmentDao {
 	private List<Department> departments;
 	public Properties databaseproperties;
 	public Properties messagePoperties;
-	
+
 	public DepartmentDao() throws FileNotFoundException, IOException {
 		departments = new ArrayList<Department>();
 		databaseproperties = new Properties();
 		databaseproperties.load(new FileInputStream("src/main/resource/database.properties"));
 		messagePoperties = new Properties();
 		messagePoperties.load(new FileInputStream("src/main/resource/message.properties"));
-		
+
 	}
 
-	//Method connect database
+	// Method connect database
 	private Connection connect() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-	
 
 		String url = databaseproperties.getProperty("url2");
 		String username = databaseproperties.getProperty("username");
@@ -52,8 +51,9 @@ public class DepartmentDao {
 	}
 
 //Method get Department
-	public List<Department> getDepartments() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
-		if(connection == null || connection.isClosed()) {
+	public List<Department> getDepartments()
+			throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+		if (connection == null || connection.isClosed()) {
 			connect();
 		}
 		// Create a statement object
@@ -66,7 +66,7 @@ public class DepartmentDao {
 			Department department = new Department();
 			department.setId(resultSet.getString("dept_no"));
 			department.setName(resultSet.getString("dept_name"));
-			
+
 			departments.add(department);
 
 		}
@@ -75,7 +75,7 @@ public class DepartmentDao {
 
 	// Method get department by id
 	public List<Department> getDepartmentByID() throws Exception {
-		
+
 		// Create a statement object
 		String sql = "SELECT * FROM 	departments WHERE dept_no = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);

@@ -1,6 +1,8 @@
 package com.vti.entity.IOStream;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Student implements Serializable{
 
@@ -12,7 +14,7 @@ int id;
 String name;
 
 public Student () {
-	id = ScannerUtils.inputInt("nhap id");
+	id = ScannerUtils.inputInt("nhap int");
 	name = ScannerUtils.inputString();
 }
 
@@ -22,42 +24,35 @@ public String toString() {
 }
 
 public static void main(String[] args) {
+	List<Student> students = new ArrayList<Student>();
 	
-	int id = ScannerUtils.inputInt("nhap id");
-	String name = ScannerUtils.inputString();
+//	for (int i=0;i<3;i++) {
+//		Student student = new Student();
+//		int id = ScannerUtils.inputInt("nhap id");
+//		String name = ScannerUtils.inputString();
+//		students.add(student);
+//	}
+//	
+//	for (Student student : students) {
+//		try {
+//			IOManager.writeObject(student, "/Users/Aki/Desktop/UBM.text");
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+		
+//
 	
+
+//	try {
+//		IOManager.readObject("/Users/Aki/Desktop/UBM.text");
+//	} catch (Exception e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 	
-Student student1 = new Student();
-Student student2 = new Student();
-Student student3 = new Student();
 
-try {
-	IOManager.writeObject(student1, "studentinformation.txt");
-} catch (Exception e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
-try {
-	IOManager.writeObject(student2, "studentinformation.txt");
-} catch (Exception e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
-try {
-	IOManager.writeObject(student3, "studentinformation.txt");
-} catch (Exception e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-
-try {
-	IOManager.readObject("studentinformation.txt");
-} catch (Exception e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-
-
-}
 }
 }
 

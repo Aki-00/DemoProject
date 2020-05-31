@@ -76,6 +76,7 @@ public static void readObject(String path) throws Exception {
 	
 	Object object = objectInputStream.readObject();
 	objectInputStream.close();
+	System.out.println(object);
 }
 
 }
