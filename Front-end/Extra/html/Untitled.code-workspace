@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../Assignment3"
+		},
+		{
+			"path": "../../Assignment4"
+		},
+		{
+			"path": "../../../../../EmployeeManagement"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "EmployeeManagement"
+	}
+}

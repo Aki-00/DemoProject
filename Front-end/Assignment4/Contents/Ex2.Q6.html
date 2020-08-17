@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ex2.Q4</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<style>
+    .box{
+        width: 100%;
+        height:100%;
+        display: flex;
+        position: relative;
+    }
+    .img{
+        width:200px;
+        height:150px;
+    }
+
+</style>
+</head>
+<body>
+    <div class="box">
+        <img class="img" src="/Users/Aki/Desktop/print/26166131_1513659258731683_2191046689826211974_n.jpg">
+    </div>
+
+</body>
+
+    <script>
+        $(".img").click(function(){
+            $(".img").animate({
+                height: '+=150px',
+                width: '+=150px'  
+            });  
+        }); 
+    </script>
+</html>
+

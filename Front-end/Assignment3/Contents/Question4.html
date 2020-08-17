@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Assignment 3</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>  
+</head>
+
+<body>
+    <div>
+        <label for="number 1">Number 1</label>
+        <input type="number" id="number1" name="number 1">
+        <br>
+        <label for="number 2">Number 2</label>
+        <input type="number" id="number2" name="number 2">
+        <br>
+        <label for="option">Option</label>
+  <select name="option" id="option">
+    <option value="add">Add</option>
+    <option value="sub">Sub</option>
+    <option value="divide">Divide</option>
+    <option value="multiply">Multiply</option>
+  </select>
+  <br>
+  <label for="result">Kết quả</label>
+  <input type="number" id="result" name="result" disabled="disabled">
+  <br>
+  <button type="button" id="cal">Calculate</button>
+  <script>
+
+$("#cal").click(function cal(){
+    var result=0;
+var option=$("#option").val();
+if (option=="add"){
+    result=Number($("#number1").val()) + Number($("#number2").val());
+}else if(option=="sub"){
+    result=$("#number1").val() - $("#number2").val();
+}else if (option=="divide"){
+    result=$("#number1").val() / $("#number2").val();
+}else{
+    result=$("#number1").val() * $("#number2").val()
+}
+    $("#result").val(result);
+});
+
+  </script>
+</body>
+</html>

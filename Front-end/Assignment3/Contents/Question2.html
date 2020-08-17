@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Assignment 3</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>   
+</head>
+<style>
+    table{
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <table>
+        <tr>
+            <td>Nhap do dai chieu dai thu nhat</td>
+            <td> <input type="number" id="number1" name="number 1"></td>
+        </tr>
+        <tr>
+            <td>Nhap do dai chieu dai thu hai</td>
+            <td><input type="number" id="number2" name="number 2"></td>
+        </tr>
+        <tr colspan="2" align="center">
+            <td><button type="button" id="cal">Caculate</button></td>
+        </tr>
+        <tr>
+            <td>Chu vi</td>
+            <td> <input type="number" id="chuvi" name="chuvi" disabled="disabled"></td>
+        </tr>
+        <tr>
+            <td>Dien tich</td>
+            <td> <input type="number" id="dientich" name="dientich" disabled="disabled"></td>
+        </tr>
+    </table>
+    <script>
+        $("#cal").click(function chuvi(){
+            var chuvi =(Number($("#number1").val()) + Number($("#number2").val()))/2
+            var dientich =$("#number1").val() * $("#number2").val()
+            $("#chuvi").val(chuvi)
+            $("#dientich").val(dientich);
+        });
+    
+    </script>
+
+</body>
+</html>

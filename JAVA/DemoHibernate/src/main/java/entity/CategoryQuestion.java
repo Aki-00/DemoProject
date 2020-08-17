@@ -1,0 +1,118 @@
+/**
+ * 
+ */
+package entity;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+@Entity
+@Table(name = "CategoryQuestion", catalog = "TestingSystem")
+@Inheritance (strategy = InheritanceType.JOINED)
+
+/**
+ * This class is CategoryQueston entity.
+ * 
+ * @Description: .
+ * @author: Bich.NTT
+ * @create_date:Jun 23, 2020
+ * @version: 1.0
+ * @modifer: Bich.NTT
+ * @modifer_date: Jun 23, 2020
+ */
+public class CategoryQuestion implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CategoryID", nullable = false)
+	private short id;
+	
+	@Column(name = "CategoryName", nullable = false, unique = true, length = 50)
+	private String name;
+	
+	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+	private List<Question> questions;
+	
+
+
+	/**
+	 * Constructor for class CategoryQueston
+	 * 
+	 * @Description: .
+	 * @author: Bich.NTN
+	 * @create_date: Jun 23, 2020
+	 * @version: 1.0
+	 * @modifer: Bich.NTN
+	 * @modifer_date: Jun 23, 2020
+	 */
+	public CategoryQuestion() {
+
+	}
+
+	/**
+	 * @return the id
+	 */
+	public short getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(short id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	/*
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CategoryQueston [id=" + id + ", name=" + name + "]";
+	}
+
+}

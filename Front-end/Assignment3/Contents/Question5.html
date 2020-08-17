@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Assignment 3</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>  
+</head>
+<body>
+    <div>
+        <label for="number 1">Number 1</label>
+        <input type="number" id="number1" name="number 1" max="50" min="1">
+        <br>
+        <button type="button" id="cal">Calculate</button>
+        <br>
+  <label for="result">Kết quả</label>
+  <input type="number" id="result" name="result" disabled="disabled">
+
+    </div>
+
+    <script>
+        $("#cal").click(function cal(){
+            var result=$("#number1").val()*$("#number1").val();
+            $("#result").val(result);
+            });
+    </script>
+
+</body>
+</html>
