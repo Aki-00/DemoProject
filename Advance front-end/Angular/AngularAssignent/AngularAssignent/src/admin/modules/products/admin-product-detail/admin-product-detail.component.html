@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <h3> {{product.name | uppercase}}</h3>
+        <img width="400" src="{{product.image}}" alt="">
+        <strong>price: {{ product.sell_price | currency: 'VND' }}</strong>
+    </div>
+    <div class="row mb-5">
+        <div class="col-8"></div>
+        <div class="col-4">
+             <button class="btn btn-sm btn-danger ">Delete</button>
+    
+        </div>
+    
+    </div>
+ </div>
+    

@@ -1,0 +1,62 @@
+<div class="container">
+  
+    <section class="panel panel-default">
+  <div class="panel-heading"> 
+  <h3 class="panel-title">Create Product</h3> 
+  </div> 
+  <div class="panel-body">
+    
+  <form class="form-horizontal" role="form" [formGroup]="addProductForm" (ngSubmit)="handleAddProduct()" >
+     <div class="form-group">
+      <label for="name" class="col-sm-3 control-label">Name</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" id="name" [ngClass]="{'has-error': addProductForm.get('name').touched && addProductForm.get('name').invalid}" placeholder="Name">
+        <li *ngIf="addProductForm.get('name').invalid && addProductForm.get('name').touched" class="text text-danger">Name Is Required</li>
+    </div>
+      
+    </div> <!-- form-group // -->
+    <div class="form-group">
+      <label for="category" class="col-sm-3 control-label">Category</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="category" id="category" [ngClass]="{'has-error': addProductForm.get('category').touched && addProductForm.get('category').invalid}" placeholder="Category">
+        <li *ngIf="addProductForm.get('category').value.length == 0 && addProductForm.get('category').touched" class="text text-danger">Category Is Required</li>
+        <li *ngIf="addProductForm.get('category').errors.pattern && addProductForm.get('category').touched" class="text text-danger">Category Is Number Only</li>
+
+      </div>
+    </div> <!-- form-group // -->
+    <div class="form-group">
+      <label for="price" class="col-sm-3 control-label">Price</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="price" id="price" [ngClass]="{'has-error': addProductForm.get('price').touched && addProductForm.get('price').invalid}" placeholder="Price">
+        <li *ngIf="addProductForm.get('price').invalid && addProductForm.get('price').touched" class="text text-danger">Price Is Required</li>
+
+      </div>
+    </div> <!-- form-group // -->
+    <div class="form-group">
+        <label for="image" class="col-sm-3 control-label">Image URL</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" formControlName="image" id="image" placeholder="URL">
+          <li *ngIf="addProductForm.get('image').value.length == 0 && addProductForm.get('image').touched" class="text text-danger">URL Is Required</li>
+          <!-- <li *ngIf="f.image.errors.pattern" class="text text-danger">URL Is Not Right Format</li> -->
+        </div>
+      </div> <!-- form-group // -->
+      
+
+  
+
+    
+    <hr>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-primary" [disabled]="!addProductForm.valid">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="resetForm()">Reset form</button>
+    
+      </div>
+    </div> <!-- form-group // -->
+  </form>
+    
+  </div><!-- panel-body // -->
+  </section><!-- panel// -->
+  
+    
+  </div> <!-- container// -->
